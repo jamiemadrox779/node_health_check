@@ -1,3 +1,4 @@
+
 /**
  * Sovryn node health check
 */
@@ -5,10 +6,10 @@ const express= require('express');
 const app = express();
 const http = require('http').createServer(app);
 const Web3 = require('web3');
-     
+
 const serverPort = 3001;
-const web3 = new Web3('https://mainnet2.sovryn.app/rpc');
-const web3S = new Web3('wss://mainnet2.sovryn.app/ws');
+const web3 = new Web3("http://127.0.0.1:4444");
+const web3S = new Web3("ws://127.0.0.1:4445/websocket");
 const web3Iov = new Web3('https://public-node.rsk.co');
 
 
