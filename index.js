@@ -22,6 +22,7 @@ app.get('/', async (req, res)=> {
     const i = await web3Iov.eth.getBlockNumber();
     console.log(new Date(Date.now())+ " processed blocks: rpc "+b+", wss: "+s+"  iov: "+i);
 
-    if(b===s && b===i) return res.status(200).send("ok");
+    if(Math.abs(b - s) <= 3 && Math.abs(b-i)<=3) return res.status(200).send("ok");
+
     res.status(500).send("not in sync");
 });
