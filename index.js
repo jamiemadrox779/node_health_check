@@ -6,17 +6,22 @@ const express= require('express');
 const app = express();
 const http = require('http').createServer(app);
 const Web3 = require('web3');
-
 const serverPort = 3001;
-const web3 = new Web3("http://127.0.0.1:4444");
-const web3S = new Web3("ws://127.0.0.1:4445/websocket");
-const web3Iov = new Web3('https://public-node.rsk.co');
+let web3;
+let web3S;
+let web3Iov;
+// wait for rsk node to start
+setTimeout(startListening, 5000);
 
+function startListening(){
+   web3 = new Web3("http://127.0.0.1:4444");
+   web3S = new Web3("ws://127.0.0.1:4445/websocket");
+   web3Iov = new Web3('https://public-node.rsk.co');
 
-http.listen(serverPort, () => {
-    console.log('listening on *:'+serverPort);
-});
-
+   http.listen(serverPort, () => {
+       console.log('listening on *:'+serverPort);
+   });
+}
 app.get('/', async (req, res)=> {
     const b = await web3.eth.getBlockNumber();
     const s = await web3S.eth.getBlockNumber();
