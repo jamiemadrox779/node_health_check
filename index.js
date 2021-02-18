@@ -11,7 +11,7 @@ let web3;
 let web3S;
 let web3Iov;
 // wait for rsk node to start
-setTimeout(startListening, 5000);
+setTimeout(startListening, 20000);
 
 function startListening(){
    web3 = new Web3("http://127.0.0.1:4444");
